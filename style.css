@@ -1,0 +1,302 @@
+@charset "UTF-8";
+/*========================
+    フロートの解除
+========================*/
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+/*========================
+    全体設計
+========================*/
+
+body {
+  color: #555;
+  font-size: 14px;
+  line-height: 1;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  /*font-family: "メイリオ" Meiryo;*/
+  background-color: #f7f0e1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*========================
+    ラッパー
+========================*/
+
+div#wrapper {
+  width: 960px;
+  height: auto;
+  margin: 0 auto 0 auto;
+}
+
+/*========================
+    ヘッダー
+========================*/
+
+header {
+  width: 960px;
+  height: 99px;
+}
+
+header h1 {
+  width: 213px;
+  height: 39px;
+  margin-top: 30px;
+  float: left;
+}
+
+nav {
+  float: right;
+  margin-top: 56px;
+}
+
+nav ul li {
+  float: left;
+  margin-left: 25px;
+}
+
+nav ul li a {
+  color: #896d31;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  position: relative; /*アンダーラインの位置を決めるための基準 */
+}
+
+nav ul li a:hover {
+  color: #e6a4b4;
+}
+
+nav ul li a::after {
+  position: absolute; /*親要素であるaタグを基準に位置を指定*/
+  left: 0; /*アンダーラインを各メニュー（aタグ）の左端に指定*/
+  content: ""; /*本来は、擬似要素に入るテキストなどを’’内に指定。今回はアンダーラインなので何も記載しない*/
+  width: 100%; /*アンダーラインを各aタグの幅に合わせる*/
+  height: 2px; /*アンダーラインの高さ（太さ）*/
+  background: #e6a4b4; /*アンダーラインの色*/
+  bottom: 20px; /*アンダーラインが現れ始める位置（aタグの下辺からの高さ）*/
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+nav ul li a:hover::after {
+  visibility: visible;
+  bottom: 1px; /*アニメーションが止まる位置*/
+  opacity: 1;
+}
+
+/*========================
+    メイン画像
+========================*/
+
+div#mainimage {
+  width: 960px;
+  height: 300px;
+  margin-bottom: 40px;
+  border-radius: 30px; /* 角を丸くする */
+  border: 1px solid #f3d7ca;
+  overflow: hidden;
+  box-shadow: 0px 3px 15px rgba(180, 175, 164, 0.3);
+}
+
+/*========================
+    レフト
+========================*/
+
+div#left {
+  width: 280px;
+  height: auto;
+  /*background-color: gray; 確認用、バックグランドカラーは後で消す*/
+  float: left;
+  margin-right: 30px;
+}
+
+div#left ul li {
+  width: 278px;
+  height: 48px;
+  background-color: #fffcf7;
+  margin-bottom: 10px;
+  border: 1px solid #f3d7ca;
+  border-radius: 20px; /* 角を丸くする */
+  box-shadow: 0 2px 1px #f3d7ca; /* ボタンの影*/
+}
+
+div#left ul li a {
+  font-size: 16px;
+  font-weight: bold;
+  color: #896d31;
+  text-decoration: none;
+  line-height: 50px;
+  display: block;
+}
+
+div#left ul li:hover {
+  transform: translateY(2px);
+  box-shadow: none;
+  opacity: 0.8; /*不透明度を80%に*/
+}
+
+a#icon_age {
+  background: url(images/icon_age.png) no-repeat 14px center;
+  padding-left: 50px;
+}
+
+a#icon_gift {
+  background: url(images/icon_gift.png) no-repeat 14px center;
+  padding-left: 50px;
+}
+
+a#icon_contact {
+  background: url(images/icon_contact.png) no-repeat 14px center;
+  padding-left: 50px;
+}
+
+/*========================
+    ライト
+========================*/
+
+div#right {
+  width: 650px;
+  height: auto;
+  /*background-color: #fffcf7;  確認用、バックグランドカラーは後で消す*/
+  float: left;
+}
+
+div#right h2 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #896d31;
+  margin-bottom: 20px;
+  position: relative;
+  padding: 1em;
+  border: 2px dashed #e6a4b4;
+  border-radius: 20px;
+}
+
+/*吹き出しの先っちょ部分の設定*/
+div#right h2::before {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 20%;
+  transform: translateX(-50%) rotate(-45deg);
+  width: 10px;
+  height: 10px;
+  border: 2px dashed #e6a4b4;
+  border-top: none;
+  border-right: none;
+  background-color: #fffcf7;
+}
+
+/*吹き出しの影の設定*/
+div#right h2::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 100%;
+  height: 100%;
+  background-color: #fffcf7;
+  border-radius: 20px; /*影の角丸*/
+  z-index: -1;
+}
+
+div#right dl {
+  background-color: #fffcf7;
+  margin-bottom: 10px;
+}
+
+div#right dt {
+  font-size: 13px;
+  color: #b38e40;
+  float: left;
+  width: 79px;
+  line-height: 40px;
+  padding-left: 15px;
+}
+
+div#right dd {
+  font-size: 14px;
+  color: #856a30;
+  float: left;
+  width: 556px;
+  line-height: 40px;
+}
+
+div#right dt:nth-of-type(odd),
+div#right dd:nth-of-type(odd) {
+  background-color: #f1e7d7;
+}
+
+div.clearfix {
+  clear: both;
+}
+
+/*========================
+    フッター
+========================*/
+
+footer {
+  width: 100%;
+  height: auto;
+  background-color: #f3d7ca;
+  margin-top: 50px;
+}
+
+div#footer_inner {
+  width: 960px;
+  margin: 0 auto;
+  position: relative;
+  padding: 20px 0;
+}
+
+p#pagetop a {
+  width: 78px;
+  height: 20px;
+  background-color: #f3d7ca;
+  text-align: center;
+  color: #896d31;
+  display: block;
+  text-decoration: none;
+  line-height: 20px;
+  position: absolute;
+  top: -20px;
+  right: 0;
+}
+
+p#pagetop a:hover {
+  color: #f5f5f5;
+}
+
+p#footer_logo {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  margin-top: 24px;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 25px;
+}
+
+footer ul li a {
+  color: #896d31;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+footer ul li a:hover {
+  color: #f5f5f5;
+}
